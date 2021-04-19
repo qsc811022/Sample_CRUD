@@ -8,6 +8,27 @@
 </div>
 
 <h2>留言板 </h2>
+@using (Html.BeginForm("Index","Guestbooks",FormMethod.Get))
+{
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(Model=>Model.Search)
+            </td>
+            <td>
+                @Html.TextBoxFor(Model=>Model.Search)
+            </td>
+            <td>
+               <input  type="submit" value="搜尋"/>
+            </td>
+        </tr>
+    </table>
+
+            
+}
+
+
+
 <table>
     @if(!Model.DataList.Count.Equals(0))
     {

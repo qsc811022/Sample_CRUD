@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Sample_CRUD.Models;
+using Sample_CRUD.ViewModels;
 
 namespace Sample_CRUD.Service
 {
@@ -18,11 +19,23 @@ namespace Sample_CRUD.Service
         
         //function 取得陣列資料方法
 
-        public List<Guestbook> GetDataList()
+        public List<Guestbook> GetDataList(string Search)
         {
             List<Guestbook> DataList = new List<Guestbook>();
             //sql語法
-            string sql = $@"Select * FROM Guestbooks;";
+            string sql = string.Empty;
+            if (!string.IsNullOrWhiteSpace(Search))
+            {
+                sql = $@"select * from Guestbooks where Name Like '%{Search}%' OR Content Like '%{Search}%' OR Reply Like '%{Search}%'";
+
+            }
+            else 
+            {
+              sql = $@"Select * FROM Guestbooks;";
+            }
+
+            //string sql = $@"Select * FROM Guestbooks;";
+
             try
             {
                 //開啟資料庫連線
