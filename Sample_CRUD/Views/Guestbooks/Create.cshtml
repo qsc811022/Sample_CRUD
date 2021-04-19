@@ -11,6 +11,7 @@
             </td>
             <td>
                 @Html.TextBoxFor(Model=>Model.Name)
+                @Html.ValidationMessageFor(Model=>Model.Name)
             </td>
         </tr>
         <tr>
@@ -19,6 +20,7 @@
             </td>
             <td>
                 @Html.TextBoxFor(Model=>Model.Content)
+                @Html.ValidationMessageFor(Model=>Model.Content)
             </td>
         </tr>
     </table>
