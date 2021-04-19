@@ -1,0 +1,79 @@
+﻿@model Sample_CRUD.ViewModels.GuestbooksViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>留言板 </h2>
+<table>
+    @if(!Model.DataList.Count.Equals(0))
+    {
+        foreach (var item in Model.DataList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(Model =>Model.DataList[0].Name)
+                </td>
+                <td>
+                    @item.Name
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(Model=>Model.DataList[0].CreateTime)
+                </td>
+                <td>
+                    @item.CreateTime
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(Model=>Model.DataList[0].Content)
+                </td>
+                <td colspan="3">
+                    @item.Content
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(Model=>Model.DataList[0].Reply)
+                </td>
+                <td colspan="3">
+                    @item.Reply
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(Model=>Model.DataList[0].ReplyTime)
+                </td>
+                <td>
+                    @item.ReplyTime
+                </td>
+            </tr>              
+        }
+    }
+    else
+    {
+        <tr>
+            <td colspan="4">
+                資料內查無資料
+            </td>
+        </tr>
+
+    }
+
+
+
+
+</table>
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
