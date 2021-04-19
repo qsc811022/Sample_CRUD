@@ -64,5 +64,35 @@ namespace Sample_CRUD.Service
 
 
 
+        //新增方法
+
+        public void InsertGuestbooks(Guestbook newData)
+        {
+            //sql 新增語法
+            //設定新增時間為現在
+
+            string sql = $@"Insert into Guestbooks(Name,Content,CreateTime) VALUES('{newData.Name}','{newData.Content}','{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+
+            try
+            {
+                conn.Open(); //開啟資料庫連線
+                //執行Sql執行
+                SqlCommand cmd = new SqlCommand(sql,conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+
+
+        }
+
+
     }
 }
