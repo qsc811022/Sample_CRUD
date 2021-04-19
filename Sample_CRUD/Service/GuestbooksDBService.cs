@@ -94,5 +94,74 @@ namespace Sample_CRUD.Service
         }
 
 
+        //藉由編號取得單筆資料的方法
+        public Guestbook GetDataById(int Id)
+        {
+            Guestbook Data = new Guestbook();
+            //sql語法
+            string sql = $@"select * from Guestbooks Where Id = {Id}";
+            try
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                //取得sql 資料
+                SqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                Data.Id = Convert.ToInt32(dr["Id"]);
+                Data.Name = dr["Name"].ToString();
+                Data.Content=dr["Content"].ToString();
+                Data.CreateTime =  Convert.ToDateTime(dr["CreateTime"]);
+                if (!string.IsNullOrEmpty(dr["Reply"].ToString()))
+                {
+                    Data.Reply = dr["Reply"].ToString();
+                    Data.ReplyTime=Convert.ToDateTime(dr["ReplyTime"]);
+
+                }
+            }
+            catch (Exception e)
+            {
+                //查無資料
+                Data = null;
+            }
+            finally 
+            {
+                conn.Close();
+            }
+
+
+            return Data;
+
+
+        }
+
+
+        //修改留言的方法
+        public void UpdateGuestbooks(Guestbook UpdateData)
+        {
+            //sql 修改語法
+            string sql  = $@"Update Guestbooks SET Name = '{UpdateData.Name}', Content = '{UpdateData.Content}' where Id = {UpdateData.Id}";
+
+            try
+            {
+                //開啟資料庫連線
+                conn.Open();
+
+                //執行sqlcommand
+                SqlCommand cmd = new SqlCommand(sql,conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            { 
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+
+        }
     }
 }
