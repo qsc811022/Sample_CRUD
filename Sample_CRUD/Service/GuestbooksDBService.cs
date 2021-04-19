@@ -201,5 +201,31 @@ namespace Sample_CRUD.Service
             //判斷並回傳
             return (Data !=null && Data.ReplyTime ==null);
         }
+
+
+        //刪除留言
+        public void DeleteGuestbooks(int Id)
+        {
+            //sql刪除語法
+            string sql = $@"Delete from Guestbooks Where Id = {Id}";
+
+            try
+            {
+                conn.Open();
+                
+                SqlCommand cmd = new SqlCommand(sql,conn);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            { 
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
     }
 }
