@@ -1,0 +1,61 @@
+﻿@model Sample_CRUD.Models.Guestbook
+
+@{
+    ViewBag.Title = "Reply";
+}
+
+<h2>Reply</h2>
+@using (Html.BeginForm())
+{
+    <h3>回覆留言</h3>
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.Name)
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Name)
+                @Html.ValidationMessageFor(Model => Model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.Content)
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Content)
+                @Html.ValidationMessageFor(Model => Model.Content)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.Reply)
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Reply)
+                @Html.ValidationMessageFor(Model => Model.Reply)
+            </td>
+        </tr>
+    </table>
+    if (Model.ReplyTime == null)
+    {
+        <input type="submit" value="回覆留言" />
+    }
+    else
+    {
+        <textarea>此留言已經回覆，請</textarea>
+        @Html.ActionLink("返回列表", "Index")
+
+    }
+}
+
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

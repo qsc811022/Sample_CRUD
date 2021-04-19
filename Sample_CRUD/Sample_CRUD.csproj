@@ -168,6 +168,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Guestbooks\Index.cshtml" />
     <Content Include="Views\Guestbooks\Create.cshtml" />
+    <Content Include="Views\Guestbooks\Edit.cshtml" />
+    <Content Include="Views\Guestbooks\Reply.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

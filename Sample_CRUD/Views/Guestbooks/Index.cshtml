@@ -52,7 +52,14 @@
                 <td>
                     @item.ReplyTime
                 </td>
-            </tr>              
+            </tr>    
+            <tr>
+                <td colspan="2">
+                    @Html.ActionLink("修改留言", "Edit", new { Id = item.Id })
+
+                    @Html.ActionLink("修改留言", "Reply", new { Id = item.Id })
+                </td>
+            </tr>
         }
     }
     else
