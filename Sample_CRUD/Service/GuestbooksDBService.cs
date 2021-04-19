@@ -163,5 +163,43 @@ namespace Sample_CRUD.Service
 
 
         }
+
+        //回覆留言
+
+        public void ReplyGuestbooks(Guestbook ReplyData)
+        {
+            //sql修改語法
+            //設定回覆時間為現在
+            string sql = $@"Update Guestbooks set Reply ='{ReplyData.Reply}',ReplyTime='{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}' Where Id
+            ={ReplyData.Id}";
+
+            try
+            {
+                conn.Open();
+                //執行sql指令
+                SqlCommand cmd = new SqlCommand(sql,conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+
+        //修改資料判斷的方式
+
+        public bool CheckUpdate(int Id)
+        {
+            //根據 Id 取得要修改的資料
+            Guestbook Data = GetDataById(Id);
+            //判斷並回傳
+            return (Data !=null && Data.ReplyTime ==null);
+        }
     }
 }
