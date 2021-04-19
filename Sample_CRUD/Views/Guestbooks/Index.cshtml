@@ -91,8 +91,45 @@
                 資料內查無資料
             </td>
         </tr>
-
     }
+    <tr>
+        <td>
+            @if (Model.Paging.NowPage > 1)
+            {
+                @Html.ActionLink("<<", "Index", new { Page = 1, Search = Model.Search })
+
+                @Html.ActionLink("<", "Index", new { Page =Model.Paging.NowPage-1, Search = Model.Search})
+            }
+        </td>
+
+        <td>
+            @for (var page =(Model.Paging.NowPage-6);page<(Model.Paging.NowPage+6);page++)
+            {
+                if (( page> 0 )&&(page <= Model.Paging.MaxPage))
+                {
+                    if(page == Model.Paging.NowPage)
+                    {
+                        <b>@page</b>
+                    }
+                    else
+                    {
+                        @Html.ActionLink(page.ToString(),"Index",new{Page = page, Search = Model.Search})
+                    }
+
+                }
+
+            }
+        </td>
+        <td>
+            @if (Model.Paging.NowPage < Model.Paging.MaxPage)
+            {
+                @Html.ActionLink(">", "Index", new { Page = Model.Paging.NowPage + 1, Search = Model.Search })
+
+
+                @Html.ActionLink(">>", "Index", new { Page = Model.Paging.NowPage, Search = Model.Search })
+            }
+        </td>
+    </tr>
 
 
 

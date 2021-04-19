@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Models\Guestbook.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ForPaging.cs" />
     <Compile Include="Service\GuestbooksDBService.cs" />
     <Compile Include="ViewModels\GuestbooksViewModel.cs" />
   </ItemGroup>

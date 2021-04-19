@@ -17,13 +17,14 @@ namespace Sample_CRUD.Controllers
 
 
         // GET: Guestbooks
-        public ActionResult Index(string Search)
+        public ActionResult Index(string Search,int Page=1)
         {
             //宣告一個新頁面的模型
             GuestbooksViewModel Data = new GuestbooksViewModel();
             // 從Service 中取得所需要的陣列資料
             Data.Search = Search;
-            Data.DataList = GuestbookService.GetDataList(Data.Search);
+            Data.Paging = new ForPaging(Page);
+            Data.DataList = GuestbookService.GetDataList(Data.Paging,Data.Search);
             //將頁面傳入View中
             return View(Data);
         }
