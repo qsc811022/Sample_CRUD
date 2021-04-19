@@ -1,0 +1,39 @@
+﻿@model Sample_CRUD.Models.Guestbook
+
+
+@using (Html.BeginForm("Create","Guestbooks")) 
+{
+    <h3>新增留言</h3>
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(Model=>Model.Name)
+            </td>
+            <td>
+                @Html.TextBoxFor(Model=>Model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model=>Model.Content)
+            </td>
+            <td>
+                @Html.TextBoxFor(Model=>Model.Content)
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="新增留言" />
+}
+
+
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

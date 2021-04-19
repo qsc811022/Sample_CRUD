@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+using Sample_CRUD.Models;
 using Sample_CRUD.Service;
 using Sample_CRUD.ViewModels;
 
@@ -24,5 +26,21 @@ namespace Sample_CRUD.Controllers
             //將頁面傳入View中
             return View(Data);
         }
+
+        public ActionResult Create()
+        {
+            return PartialView();
+        }
+        [HttpPost]
+        public ActionResult Create([Bind(Include ="Name,Content")]Guestbook Data)
+        {
+
+            //使用Service 來新增一筆資料
+            GuestbookService.InsertGuestbooks(Data);
+            return RedirectToAction("Index");
+
+
+        }
+
     }
 }
