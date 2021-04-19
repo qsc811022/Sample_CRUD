@@ -89,13 +89,15 @@ namespace Sample_CRUD.Controllers
             {
                 return RedirectToAction("Index");
             }
-
-
-
-
-
         }
 
+        public ActionResult Delete(int Id)
+        {
+            //Service 來刪除資料
+            GuestbookService.DeleteGuestbooks(Id);
+            //重新導向頁面至開始頁面
+            return RedirectToAction("Index");
+        }
 
 
     }
